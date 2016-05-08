@@ -40,19 +40,7 @@ class Exchange
 	        tscore += 0.09
 	      when 3
 	        tscore += 0.08
-	      when 4
-	        tscore += 0.07
-	      when 5
-	        tscore += 0.06
-	      when 6
-	        tscore += 0.05
-	      when 7
-	        tscore += 0.04
-	      when 8
-	        tscore += 0.03
-	      when 9
-	        tscore += 0.02
-	      when 10
+	      when 4..10
 	        tscore += 0.01
 	      else
 	      end 
@@ -74,16 +62,8 @@ class Exchange
 	        tscore += 7
 	      when 5
 	        tscore += 6
-	      when 6
-	        tscore += 5
-	      when 7
-	        tscore += 4
-	      when 8
+	      when 6..10
 	        tscore += 3
-	      when 9
-	        tscore += 2
-	      when 10
-	        tscore += 1
 	      when 11..20
 	        tscore += 0.5
 	      when 21..30
