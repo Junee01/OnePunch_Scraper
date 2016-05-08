@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  issue_title: MyString
+  issue_rank: 1
+  issue_today_total: 1
+  issue_date: 2016-05-08 21:10:20
+  issue_time: 1
+
+two:
+  issue_title: MyString
+  issue_rank: 1
+  issue_today_total: 1
+  issue_date: 2016-05-08 21:10:20
+  issue_time: 1

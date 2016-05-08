@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ichart rank:</strong>
+  <%= @i_chart.iChart_rank %>
+</p>
+
+<p>
+  <strong>Ichart artist:</strong>
+  <%= @i_chart.iChart_artist %>
+</p>
+
+<p>
+  <strong>Ichart song:</strong>
+  <%= @i_chart.iChart_song %>
+</p>
+
+<p>
+  <strong>Ichart album:</strong>
+  <%= @i_chart.iChart_album %>
+</p>
+
+<p>
+  <strong>Ichart etm:</strong>
+  <%= @i_chart.iChart_etm %>
+</p>
+
+<%= link_to 'Edit', edit_i_chart_path(@i_chart) %> |
+<%= link_to 'Back', i_charts_path %>

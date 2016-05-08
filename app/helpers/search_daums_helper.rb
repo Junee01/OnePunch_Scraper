@@ -1,0 +1,2 @@
+module SearchDaumsHelper
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  iChart_rank: 1
+  iChart_artist: MyString
+  iChart_song: MyString
+  iChart_album: MyString
+  iChart_etm: MyString
+
+two:
+  iChart_rank: 1
+  iChart_artist: MyString
+  iChart_song: MyString
+  iChart_album: MyString
+  iChart_etm: MyString

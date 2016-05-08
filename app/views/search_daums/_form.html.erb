@@ -1,0 +1,37 @@
+<%= form_for(@search_daum) do |f| %>
+  <% if @search_daum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search_daum.errors.count, "error") %> prohibited this search_daum from being saved:</h2>
+
+      <ul>
+      <% @search_daum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :issue_title %><br>
+    <%= f.text_field :issue_title %>
+  </div>
+  <div class="field">
+    <%= f.label :issue_rank %><br>
+    <%= f.number_field :issue_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :issue_today_total %><br>
+    <%= f.number_field :issue_today_total %>
+  </div>
+  <div class="field">
+    <%= f.label :issue_date %><br>
+    <%= f.datetime_select :issue_date %>
+  </div>
+  <div class="field">
+    <%= f.label :issue_time %><br>
+    <%= f.number_field :issue_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

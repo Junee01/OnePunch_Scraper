@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Issue title:</strong>
+  <%= @search_daum.issue_title %>
+</p>
+
+<p>
+  <strong>Issue rank:</strong>
+  <%= @search_daum.issue_rank %>
+</p>
+
+<p>
+  <strong>Issue today total:</strong>
+  <%= @search_daum.issue_today_total %>
+</p>
+
+<p>
+  <strong>Issue date:</strong>
+  <%= @search_daum.issue_date %>
+</p>
+
+<p>
+  <strong>Issue time:</strong>
+  <%= @search_daum.issue_time %>
+</p>
+
+<%= link_to 'Edit', edit_search_daum_path(@search_daum) %> |
+<%= link_to 'Back', search_daums_path %>

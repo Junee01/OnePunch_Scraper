@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing I Charts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ichart rank</th>
+      <th>Ichart artist</th>
+      <th>Ichart song</th>
+      <th>Ichart album</th>
+      <th>Ichart etm</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @i_charts.each do |i_chart| %>
+      <tr>
+        <td><%= i_chart.iChart_rank %></td>
+        <td><%= i_chart.iChart_artist %></td>
+        <td><%= i_chart.iChart_song %></td>
+        <td><%= i_chart.iChart_album %></td>
+        <td><%= i_chart.iChart_etm %></td>
+        <td><%= link_to 'Show', i_chart %></td>
+        <td><%= link_to 'Edit', edit_i_chart_path(i_chart) %></td>
+        <td><%= link_to 'Destroy', i_chart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New I chart', new_i_chart_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Search Googles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Issue title</th>
+      <th>Issue rank</th>
+      <th>Issue today total</th>
+      <th>Issue date</th>
+      <th>Issue time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_googles.each do |search_google| %>
+      <tr>
+        <td><%= search_google.issue_title %></td>
+        <td><%= search_google.issue_rank %></td>
+        <td><%= search_google.issue_today_total %></td>
+        <td><%= search_google.issue_date %></td>
+        <td><%= search_google.issue_time %></td>
+        <td><%= link_to 'Show', search_google %></td>
+        <td><%= link_to 'Edit', edit_search_google_path(search_google) %></td>
+        <td><%= link_to 'Destroy', search_google, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search google', new_search_google_path %>

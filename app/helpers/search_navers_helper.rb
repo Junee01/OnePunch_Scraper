@@ -1,0 +1,2 @@
+module SearchNaversHelper
+end

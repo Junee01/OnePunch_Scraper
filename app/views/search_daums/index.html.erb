@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Search Daums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Issue title</th>
+      <th>Issue rank</th>
+      <th>Issue today total</th>
+      <th>Issue date</th>
+      <th>Issue time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_daums.each do |search_daum| %>
+      <tr>
+        <td><%= search_daum.issue_title %></td>
+        <td><%= search_daum.issue_rank %></td>
+        <td><%= search_daum.issue_today_total %></td>
+        <td><%= search_daum.issue_date %></td>
+        <td><%= search_daum.issue_time %></td>
+        <td><%= link_to 'Show', search_daum %></td>
+        <td><%= link_to 'Edit', edit_search_daum_path(search_daum) %></td>
+        <td><%= link_to 'Destroy', search_daum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search daum', new_search_daum_path %>

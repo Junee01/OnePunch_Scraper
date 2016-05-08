@@ -1,0 +1,37 @@
+<%= form_for(@i_chart) do |f| %>
+  <% if @i_chart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@i_chart.errors.count, "error") %> prohibited this i_chart from being saved:</h2>
+
+      <ul>
+      <% @i_chart.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :iChart_rank %><br>
+    <%= f.number_field :iChart_rank %>
+  </div>
+  <div class="field">
+    <%= f.label :iChart_artist %><br>
+    <%= f.text_field :iChart_artist %>
+  </div>
+  <div class="field">
+    <%= f.label :iChart_song %><br>
+    <%= f.text_field :iChart_song %>
+  </div>
+  <div class="field">
+    <%= f.label :iChart_album %><br>
+    <%= f.text_field :iChart_album %>
+  </div>
+  <div class="field">
+    <%= f.label :iChart_etm %><br>
+    <%= f.text_field :iChart_etm %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

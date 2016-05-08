@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>아티스트(연예인) 영향력 수치</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>랭킹</th>
+      <th>아티스트 고유번호</th>
+      <th>아티스트 이름</th>
+      <th>아티스트 동명 키워드</th>
+      <th>합산 스코어</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody> 
+    <% rank = 0 %>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= rank+=1 %></td>
+        <td><%= artist.id %></td>
+        <td><%= artist.artist_name %></td>
+        <td><%= artist.artist_same %></td>
+        <td><%= artist.artist_score %></td>
+        <td><%= link_to '값 보기', artist %></td>
+        <td><%= link_to '값 수정', edit_artist_path(artist) %></td>
+        <td><%= link_to '아티스트 삭제', artist, method: :delete, data: { confirm: '레알 삭제?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '아티스트 추가하기', new_artist_path %>
