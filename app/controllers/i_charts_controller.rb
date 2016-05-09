@@ -4,40 +4,43 @@ class IChartsController < ApplicationController
   # GET /i_charts
   # GET /i_charts.json
   def index
+    #iChart 초기화하고 나서 새로운 데이터를 가져오기.
+    IChart.delete_all
+
     @i_charts = IChart.all
     
     #여기 주석을 풀면, 다시 수행.
-    # iChart_url = "http://www.instiz.net/iframe_ichart_score.htm?real=1"
+    iChart_url = "http://www.instiz.net/iframe_ichart_score.htm?real=1"
 
-    # #This part is for UTF ENCODING PROBLEM
-    # agent = Mechanize.new
-    # page = agent.get iChart_url
-    # data_by_nokogiri = Nokogiri::HTML(page.content)
+    #This part is for UTF ENCODING PROBLEM
+    agent = Mechanize.new
+    page = agent.get iChart_url
+    data_by_nokogiri = Nokogiri::HTML(page.content)
 
-    # @first = data_by_nokogiri.css('body div.spage_intistore_body div#score_1st')
+    @first = data_by_nokogiri.css('body div.spage_intistore_body div#score_1st')
 
-    # IChart.create(
-    #   :iChart_rank => 1,
-    #   :iChart_song => @first.css('div.ichart_score_song div.ichart_score_song1').text.strip,
-    #   :iChart_album => @first.css('div.ichart_score_song div.ichart_score_song2 span a').text.strip,
-    #   :iChart_artist => @first.css('div.ichart_score_artist div.ichart_score_artist1').text.strip,
-    #   :iChart_etm => @first.css('div.ichart_score_artist div.ichart_score_artist2 span').text.strip
-    # )
+    IChart.create(
+      :iChart_rank => 1,
+      :iChart_song => @first.css('div.ichart_score_song div.ichart_score_song1').text.strip,
+      :iChart_album => @first.css('div.ichart_score_song div.ichart_score_song2 span a').text.strip,
+      :iChart_artist => @first.css('div.ichart_score_artist div.ichart_score_artist1').text.strip,
+      :iChart_etm => @first.css('div.ichart_score_artist div.ichart_score_artist2 span').text.strip
+    )
 
-    # @second = data_by_nokogiri.css('body div.spage_intistore_body div.spage_score_bottom div.spage_score_item')
+    @second = data_by_nokogiri.css('body div.spage_intistore_body div.spage_score_bottom div.spage_score_item')
 
-    # @counter = 2
+    @counter = 2
 
-    # @second.each do |part|
-    #   IChart.create(
-    #     :iChart_rank => @counter,
-    #     :iChart_song => part.css('div.ichart_score2_song div.ichart_score2_song1').text.strip,
-    #     :iChart_album => part.css('div.ichart_score2_song div.ichart_score2_song2 span a').text.strip,
-    #     :iChart_artist => part.css('div.ichart_score2_artist div.ichart_score2_artist1').text.strip,
-    #     :iChart_etm => part.css('div.ichart_score2_artist div.ichart_score2_artist2').text.strip
-    #   ) 
-    #   @counter += 1
-    # end
+    @second.each do |part|
+      IChart.create(
+        :iChart_rank => @counter,
+        :iChart_song => part.css('div.ichart_score2_song div.ichart_score2_song1').text.strip,
+        :iChart_album => part.css('div.ichart_score2_song div.ichart_score2_song2 span a').text.strip,
+        :iChart_artist => part.css('div.ichart_score2_artist div.ichart_score2_artist1').text.strip,
+        :iChart_etm => part.css('div.ichart_score2_artist div.ichart_score2_artist2').text.strip
+      ) 
+      @counter += 1
+    end
   end
 
   # GET /i_charts/1

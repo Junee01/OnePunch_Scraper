@@ -15,11 +15,12 @@ class Exchange
 	    	@tscore += Exchanger_loop(@tmp2, @tscore)
 	    	@tscore += Exchanger_loop(@tmp3, @tscore)
 		end
-		#iChart Part with LIKE QUERY
+		#iChart Part with LIKE QUERY, Now's Data
 		@keywords.each do | keyword |
 		 	@tmp4 = IChart.where("iChart_artist LIKE ?", ("%"+keyword+"%").to_sym)
 		 	@tscore += Exchanger_loop_for_ichart(@tmp4, @tscore)
 		end
+
 		#아래는 완전 일치 리스트 형태일 경우
 		# @tmp1 = SearchNaver.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
 		# @tmp2 = SearchDaum.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
@@ -33,13 +34,13 @@ class Exchange
 		tmp.each do |t|
 	      case t.issue_rank
 	      when 1
-	        tscore += 0.1
-	      when 2
-	        tscore += 0.09
-	      when 3
-	        tscore += 0.08
-	      when 4..10
 	        tscore += 0.01
+	      when 2
+	        tscore += 0.009
+	      when 3
+	        tscore += 0.008
+	      when 4..10
+	        tscore += 0.001
 	      else
 	      end 
 	    end

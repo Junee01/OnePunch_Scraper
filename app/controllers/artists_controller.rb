@@ -4,6 +4,11 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
+    #초기화 시키고 싶을 때 사용합니다.
+    # Artist.all.each do | art |
+    #   art.update_attribute(:artist_score, 0)
+    # end
+
     @artists = Artist.all
 
     #Exchange with SearchEngine Datas
@@ -11,7 +16,8 @@ class ArtistsController < ApplicationController
 
     #For each objects exchange with same names
     @artists.each do |target|
-      search_engine_exchanger.Exchanger(target.artist_same,"2016-04-01","2016-05-07")
+      #Adapt from 05-1 ~ 05-07
+      search_engine_exchanger.Exchanger(target.artist_same,"2016-04-01","2016-05-08")
     end
   end
 
