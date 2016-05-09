@@ -4,28 +4,26 @@ class Exchange
 
 	def Exchanger(keywords,strdate,enddate)
 		@keywords = keywords.split(',')
-
+		@tscore = 0
 		#For each objects search tuples including strings left side & right side. %string% format in LIKE QUERY
 		@keywords.each do | keyword |
 			@tmp1 = SearchNaver.where("issue_title LIKE ?", ("%"+keyword+"%")).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
 			@tmp2 = SearchDaum.where("issue_title LIKE ?", ("%"+keyword+"%")).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
 			@tmp3 = SearchGoogle.where("issue_title LIKE ?", ("%"+keyword+"%")).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
-		end
 
+			@tscore += Exchanger_loop(@tmp1, @tscore)
+	    	@tscore += Exchanger_loop(@tmp2, @tscore)
+	    	@tscore += Exchanger_loop(@tmp3, @tscore)
+		end
+		#iChart Part with LIKE QUERY
 		@keywords.each do | keyword |
-			@tmp4 = IChart.where("iChart_artist LIKE ?", ("%"+keyword+"%").to_sym)
+		 	@tmp4 = IChart.where("iChart_artist LIKE ?", ("%"+keyword+"%").to_sym)
+		 	@tscore += Exchanger_loop_for_ichart(@tmp4, @tscore)
 		end
 		#아래는 완전 일치 리스트 형태일 경우
-		#@tmp1 = SearchNaver.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
-		#@tmp2 = SearchDaum.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
-		#@tmp3 = SearchGoogle.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
-
-	    @tscore = 0
-
-	    @tscore += Exchanger_loop(@tmp1, @tscore)
-	    @tscore += Exchanger_loop(@tmp2, @tscore)
-	    @tscore += Exchanger_loop(@tmp3, @tscore)
-	    @tscore += Exchanger_loop_for_ichart(@tmp4, @tscore)
+		# @tmp1 = SearchNaver.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
+		# @tmp2 = SearchDaum.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
+		# @tmp3 = SearchGoogle.where(issue_title: @keywords).where("issue_date between ? and ? ", DateTime.parse(strdate), DateTime.parse(enddate))
 
 	    Artist.where(artist_name: @keywords[0]).first.update_attribute(:artist_score, (Artist.where(artist_name: @keywords[0]).first.artist_score + @tscore))
 	end
