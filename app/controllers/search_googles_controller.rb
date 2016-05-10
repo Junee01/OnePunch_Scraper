@@ -1,3 +1,4 @@
+#Scraper Google
 class SearchGooglesController < ApplicationController
   before_action :set_search_google, only: [:show, :edit, :update, :destroy]
 
@@ -5,9 +6,9 @@ class SearchGooglesController < ApplicationController
   # GET /search_googles.json
   def index
     @search_googles = SearchGoogle.all
-
-    #현재는 04.01부터 데이터가 쌓임
-    term_date = Date.parse("2016.05.07")
+    
+    term_date = Date.parse((Date.today - 1).to_s)
+    
     while term_date < (Date.today)
       google_url = "http://rank.ezme.net/?mode=recmd" + "3" + "&day=" + term_date.to_s
 

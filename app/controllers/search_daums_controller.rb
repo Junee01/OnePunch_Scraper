@@ -1,3 +1,4 @@
+#Scraper Daum
 class SearchDaumsController < ApplicationController
   before_action :set_search_daum, only: [:show, :edit, :update, :destroy]
 
@@ -5,9 +6,9 @@ class SearchDaumsController < ApplicationController
   # GET /search_daums.json
   def index
     @search_daums = SearchDaum.all
-
-    #현재는 04.01부터 데이터가 쌓임
-    term_date = Date.parse("2016.05.07")
+    
+    term_date = Date.parse((Date.today - 1).to_s)
+    
     while term_date < (Date.today)
       daum_url = "http://rank.ezme.net/?mode=recmd" + "1" + "&day=" + term_date.to_s
 

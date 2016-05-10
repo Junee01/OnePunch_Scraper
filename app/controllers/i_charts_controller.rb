@@ -1,3 +1,4 @@
+#Scraper IChart
 class IChartsController < ApplicationController
   before_action :set_i_chart, only: [:show, :edit, :update, :destroy]
 

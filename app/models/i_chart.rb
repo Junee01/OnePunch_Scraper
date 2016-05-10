@@ -1,3 +1,3 @@
 class IChart < ActiveRecord::Base
-	#Not yet
+	#No needed
 end

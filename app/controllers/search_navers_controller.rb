@@ -1,3 +1,4 @@
+#Scraper Naver
 class SearchNaversController < ApplicationController
   before_action :set_search_naver, only: [:show, :edit, :update, :destroy]
 
@@ -6,8 +7,8 @@ class SearchNaversController < ApplicationController
   def index
     @search_navers = SearchNaver.all
 
-    #현재는 04.01부터 데이터가 쌓임
-    term_date = Date.parse("2016.05.07")
+    term_date = Date.parse((Date.today - 1).to_s)
+
     while term_date < (Date.today)
       naver_url = "http://rank.ezme.net/?mode=recmd" + "2" + "&day=" + term_date.to_s
 

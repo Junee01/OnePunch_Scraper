@@ -1,35 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<h1>아티스트(연예인) 영향력 수치</h1>
+<h1 style="text-align: center">현재 가수 영향력 수치(실시간 3주 검색어 + 현재 음원 차트)</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>랭킹</th>
-      <th>아티스트 고유번호</th>
-      <th>아티스트 이름</th>
-      <th>아티스트 동명 키워드</th>
-      <th>합산 스코어</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
 
-  <tbody> 
-    <% rank = 0 %>
-    <% @artists.each do |artist| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= rank+=1 %></td>
-        <td><%= artist.id %></td>
-        <td><%= artist.artist_name %></td>
-        <td><%= artist.artist_same %></td>
-        <td><%= artist.artist_score %></td>
-        <td><%= link_to '값 보기', artist %></td>
-        <td><%= link_to '값 수정', edit_artist_path(artist) %></td>
-        <td><%= link_to '아티스트 삭제', artist, method: :delete, data: { confirm: '레알 삭제?' } %></td>
+        <th>랭킹</th>
+        <% if false %>
+        <th>아티스트 고유번호</th>
+        <% end %>
+        <th>아티스트 이름</th>
+        <th>합산 스코어 보기</th>
+        <th>아티스트 검색 키워드 리스트</th>
+        <% if false %>
+        <th colspan="3"></th>
+        <% end %>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody> 
+      <% rank = 0 %>
+      <% @artists.each do |artist| %>
+        <tr>
+          <td><%= rank+=1 %></td>
+          <% if false %>
+          <td><%= artist.id %></td>
+          <% end %>
+          <td><%= artist.artist_name %></td>
+          <td><%= artist.artist_score %></td>
+          <td><%= artist.artist_same %></td>
+          <% if false %>
+          <td><%= link_to '보기', artist %></td>
+          <td><%= link_to '수정', edit_artist_path(artist) %></td>
+          <td><%= link_to '삭제', artist, method: :delete, data: { confirm: '레알 삭제?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
 
 <br>
 

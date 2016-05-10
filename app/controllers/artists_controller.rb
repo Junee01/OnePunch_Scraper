@@ -1,24 +1,31 @@
+#Artist
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
   # GET /artists
   # GET /artists.json
   def index
-    #초기화 시키고 싶을 때 사용합니다.
-    # Artist.all.each do | art |
-    #   art.update_attribute(:artist_score, 0)
-    # end
+    #우선 0으로 초기화 하고, 다시 환산을 진행한다.
+    Artist.all.each do | art |
+      art.update_attribute(:artist_score, 0)
+    end
 
-    @artists = Artist.all
+    #Get All Artists Data that inited artist_score by 0
+    @artists_init_by_0 = Artist.all
 
     #Exchange with SearchEngine Datas
     search_engine_exchanger = Exchange.new
 
+    #3 weeks from yesterday
+    @Enddate = (Date.today - 1).to_s
+    @Strdate = (Date.today - 22).to_s
+
     #For each objects exchange with same names
-    @artists.each do |target|
-      #Adapt from 05-1 ~ 05-07
-      search_engine_exchanger.Exchanger(target.artist_same,"2016-04-01","2016-05-08")
+    @artists_init_by_0.each do |target|
+      search_engine_exchanger.Exchanger(target.artist_same,@Strdate,@Enddate)
     end
+
+    @artists = Artist.all
   end
 
   # GET /artists/1
