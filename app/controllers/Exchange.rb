@@ -31,13 +31,13 @@ class Exchange
 		tmp.each do |t|
 	      case t.issue_rank
 	      when 1
+	        tscore += 10
+	      when 2..4
+	        tscore += 1
+	      when 5..7
 	        tscore += 0.1
-	      when 2
-	        tscore += 0.09
-	      when 3
-	        tscore += 0.08
-	      when 4..10
-	        tscore += 0.03
+	      when 8..10
+	        tscore += 0.01
 	      else
 	      	next
 	      end 
@@ -50,23 +50,15 @@ class Exchange
 		tmp.each do |t|
 	      case t.iChart_rank
 	      when 1
+	        tscore += 100
+	      when 2..10
 	        tscore += 10
-	      when 2
-	        tscore += 9
-	      when 3
-	        tscore += 8
-	      when 4
-	        tscore += 7
-	      when 5
-	        tscore += 6
-	      when 6..10
-	        tscore += 3
 	      when 11..20
-	        tscore += 0.5
+	        tscore += 1
 	      when 21..30
-	        tscore += 0.25
-	      when 31..50
 	        tscore += 0.1
+	      when 31..50
+	        tscore += 0.01
 	      else
 	      	next
 	      end 
