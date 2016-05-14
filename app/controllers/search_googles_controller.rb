@@ -7,7 +7,7 @@ class SearchGooglesController < ApplicationController
   def index
     @search_googles = SearchGoogle.all
     
-    term_date = Date.parse((Date.today - 1).to_s)
+    term_date = Date.parse((Date.today - 5).to_s)
     
     while term_date < (Date.today)
       google_url = "http://rank.ezme.net/?mode=recmd" + "3" + "&day=" + term_date.to_s
